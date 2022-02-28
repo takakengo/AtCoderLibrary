@@ -3,10 +3,13 @@
 
 import PackageDescription
 
-let package = Package(
+let package = Pcd ackage(
     name: "AtCoderLibrary",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
+        .executable(
+            name: "Main",
+            targets: ["Main"]),
         .library(
             name: "AtCoderLibrary",
             targets: ["AtCoderLibrary"]),
@@ -20,6 +23,9 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "AtCoderLibrary",
+            dependencies: []),
+        .target(
+            name: "Main",
             dependencies: []),
         .testTarget(
             name: "AtCoderLibraryTests",

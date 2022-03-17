@@ -24,9 +24,9 @@ let package = Package(
         .target(
             name: "AtCoderLibrary",
             dependencies: []),
-        .target(
+        .executableTarget(
             name: "Main",
-            dependencies: []),
+            dependencies: ["AtCoderLibrary"]),
         .testTarget(
             name: "AtCoderLibraryTests",
             dependencies: ["AtCoderLibrary"]),

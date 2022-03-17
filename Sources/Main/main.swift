@@ -1,4 +1,6 @@
 import Foundation
+import AtCoderLibrary
+
 //let MOD = 1000000007
 let MOD = 998244353
 
@@ -10,7 +12,6 @@ let MOD = 998244353
 //let T = readStringArray() // "abc" -> ["a","b","c"]
 //let An = readIntArray() // "1 2 3 4" -> [1,2,3,4]
 
-
 let N = readInt()
 var s = "Less than 100"
 
@@ -19,8 +20,9 @@ if N >= 100 {
 }else{
     print(s)
 }
+var t = Treap<Int>()
 
-//-------------------- Input読み込み用の関数 --------------------//
+//--------------- Input読み込み用の関数 --------------------//
 func readStringArray() -> [String] {
     return readLine()!.split(separator: " ").map {String($0) }
 }

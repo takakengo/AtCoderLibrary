@@ -1,16 +1,22 @@
 import Foundation
-import AtCoderLibrary
+
+/* AtcoderLibarary shoudl be imported only when you do a local testing.
+   You need to copy the source code from AtCoderLibrary before the submission */
+// import AtCoderLibrary
 
 //let MOD = 1000000007
 let MOD = 998244353
+//let alphabets = Array("abcdefghijklmnopqrstuvwxyz"
+//let alphabets = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 //-------------------- Input読み込み用の関数の呼び出し --------------------//
 //let Q = readInt() // "1" -> 1
 //let (N,K) = read2Ints() // "1 2" -> (1,2)
 //let (M,L,W) = read3Ints() // "1 2 3" -> (1,2,3)
-//let (M,L,W,X) = read3Ints() // "1 2 3 4" -> (1,2,3,4)
-//let T = readStringArray() // "abc" -> ["a","b","c"]
+//let (M,L,W,X) = read4Ints() // "1 2 3 4" -> (1,2,3,4)
 //let An = readIntArray() // "1 2 3 4" -> [1,2,3,4]
+//let T = readStringArray() // "a b c" -> ["a","b","c"]
+//let T = Array(readLine()!) // "abc" -> ["a","b","c"]
 
 let N = readInt()
 var s = "Less than 100"
@@ -20,7 +26,6 @@ if N >= 100 {
 }else{
     print(s)
 }
-var t = Treap<Int>()
 
 //--------------- Input読み込み用の関数 --------------------//
 func readStringArray() -> [String] {

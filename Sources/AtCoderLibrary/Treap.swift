@@ -258,7 +258,7 @@ final public class Treap<T: Comparable>{
 
     // 全要素を昇順に並べたArrayに変換して返す
     public func toArray(node: TreapNode<T>?) -> [T] {
-gi        var array = [T]()
+        var array = [T]()
         guard let node = node else {
             return array
         }

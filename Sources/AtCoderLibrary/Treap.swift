@@ -2,12 +2,12 @@ import Foundation
 
 // 平衡二分木を実装
 final public class Treap<T: Comparable>{
-    var root: TreapNode<T>?
+    public var root: TreapNode<T>?
 
     public init(){
         root = nil
     }
-
+    
     // arrayの内容でTreapを初期化
     public init(by array: [T]) {
         root = nil
@@ -212,8 +212,9 @@ final public class Treap<T: Comparable>{
         return findKth(root, K: Kth)?.value
     }
 
-    // val TをInsertする。
-    public func insert(val: T) -> TreapNode<T>? {
+    // 指定されたvalueをInsertする。
+    @discardableResult
+     public func insert(val: T) -> TreapNode<T>? {
         let newNode = TreapNode<T>(val:val)
         let (left,right) = split(root, by: val)
 
@@ -222,10 +223,11 @@ final public class Treap<T: Comparable>{
         return all
     }
 
-    // 2分木のk番目に要素をinsertする.
+    // 2分木のk番目に要素をinsertする.要素Valの値がTreapの小さいほうからk番目でなければならない。
+    @discardableResult
     public func insert(_ node: TreapNode<T>?, val: T, at k: Int) -> TreapNode<T>? {
         let newNode = TreapNode<T>(val:val)
-        let (left,right) = split(node, at: k)
+        let (left,right) = split(node, at: k-1)
 
         let leftnew = update(merge(left,newNode))
         let all = merge(leftnew,right)
@@ -233,9 +235,11 @@ final public class Treap<T: Comparable>{
     }
 
     // k番目の要素を削除し、削除された要素の値を返す。(要素は1始まり)
-    public func delete(_ node: TreapNode<T>?, at k: Int) -> T? {
-        let (leftDel, right) = split(node, at: k+1)
-        let (left, del) = split(leftDel, at: k)
+    @discardableResult
+    public func delete(at k: Int) -> T? {
+        let node: TreapNode<T>? = root
+        let (leftDel, right) = split(node, at: k)
+        let (left, del) = split(leftDel, at: k-1)
         // 削除対象がrootだった場合は固定でRightをRootにする.LeftとのMergeで最大PriorityがRootになることは担保できる
         if del === root {
             root = right
@@ -245,11 +249,12 @@ final public class Treap<T: Comparable>{
     }
 
     // valueを指定して削除す、削除された要素の値を返す。指定したvalueが存在しない場合はnilを返す。
-    public func delete(_ node: TreapNode<T>?, val: T) -> T? {
+    @discardableResult
+    public func delete(val: T) -> T? {
         let result = lowerBound(val)
         if result.value == val {
             // valがTreap内で見つかった場合
-            return delete(root, at: result.position!)
+            return delete( at: result.position!)
         }else {
             //指定された値が存在しない場合
             return nil
@@ -257,33 +262,37 @@ final public class Treap<T: Comparable>{
     }
 
     // 全要素を昇順に並べたArrayに変換して返す
-    public func toArray(node: TreapNode<T>?) -> [T] {
-        var array = [T]()
+    public func toArray() -> [T] {
+        var result = [T]()
+        toArray(node: root, &result)
+        return result
+    }
+    
+    // 全要素を昇順に並べたArrayに変換して返す
+    public func toArray(node: TreapNode<T>?, _ result: inout [T] ) {
         guard let node = node else {
-            return array
+            return
         }
-
         if let left = node.left {
-            array += toArray(node: left)
+            toArray(node: left, &result)
         }
-        array.append(node.value)
+        result.append(node.value)
         if let right = node.right {
-            array += toArray(node: right)
+            toArray(node: right, &result)
         }
-        return array
     }
 }
 
 // 2分木の要素にあたるクラス
 final public class TreapNode<T: Comparable>:Equatable {
-    var priority: Double // Priorityが高いものほどRootに近い
-    var value: T // 値
-    var childNodeCount: Int // 自身を含めた部分木の要素の合計
+    public var priority: Double // Priorityが高いものほどRootに近い
+    public var value: T // 値
+    public var childNodeCount: Int // 自身を含めた部分木の要素の合計
 
-    var left: TreapNode?
-    var right: TreapNode?
+    public var left: TreapNode?
+    public var right: TreapNode?
 
-    init(val: T) {
+    public init(val: T) {
         value = val
         childNodeCount = 1
         priority = drand48()

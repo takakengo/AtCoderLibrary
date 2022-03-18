@@ -11,18 +11,23 @@ open Swift-AtCoder-Library/Package.swift
 
 ## Functions
 1.  平衡二分木 (Treap) / Balanced Binary Tree 
-Treapによる平衡二分木のSwift 実装です。
-- 任意の要素の追加/検索/削除をO(logN)で実行します。
-- 検索は"Xに一致するもの" 以外にも、要素中からX以上の最小値も利用可能です。(C++のStd::set が提供するlower_bound(X))
+    Treapによる平衡二分木のSwift 実装です。
+    - 任意の要素の追加/検索/削除をO(logN)で実行します。
+    - 検索は"Xに一致するもの" 以外にも、要素中からX以上の最小値も利用可能です。(C++のStd::set が提供するlower_bound(X))
 
-Treap offers Insert/Find/Delete of its elements by O(logN). It also offers splitting/merging of Treap trees. 
+    Treap offers Insert/Find/Delete of its elements by O(logN). It also offers splitting/merging of Treap trees. 
+
+1. 順列 (Permutation)
+    配列を渡すと、その配列の要素を並び替えて作れる全パターンの組み合わせ（順列組み合わせ）を返します。配列に複数同じ要素があっても、それぞれ別のものとして区別されます。ArrayクラスのExtensionとして実装しています。
+
+    Permutation returns an Array of all possible patterons which can be created with the permutation of the original Array. 
+
+    `[1,2,3] -> [ [1,2,3] , [1,3,2], [2,1,3], [2,3,1], [3,1,2] ,[3,2,1] ]`
+
 
 ---- to be added  ---- 
-2.  優先度付キュー / Priority Queue
+1.  優先度付キュー / Priority Queue
 
-3. 順列 (Permutation)
-配列を渡すと、その配列の要素を並び替えて作れる全パターンの組み合わせ（順列組み合わせ）を返します。配列に複数同じ要素があっても、それぞれ別のものとして区別されます。
-`[1,2,3] -> [ [1,2,3] , [1,3,2], [2,1,3], [2,3,1], [3,1,2] ,[3,2,1] ]`
 
 
 ##  Swift in a Competitive Programming 
